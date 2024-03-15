@@ -5,6 +5,7 @@ import HomeScreen from '../Screens/HomeScreen/HomeScreen';
 import BookingScreen from '../Screens/BookingScreen/BookingScreen';
 import ProfileScreen from '../Screens/ProfileScreen/ProfileScreen';
 import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
+import Color from '../Utiles/Color';
 
 
 const Tab = createBottomTabNavigator();
@@ -12,7 +13,8 @@ const Tab = createBottomTabNavigator();
 export default function TabNavigation() {
     return (
         <Tab.Navigator screenOptions={{
-            headerShown: false
+            headerShown: false,
+            tabBarActiveTintColor: Color.PRIMARY
         }}>
             <Tab.Screen name="home" component={HomeScreen} options={{
                 tabBarIcon: ({ color, size }) => (
