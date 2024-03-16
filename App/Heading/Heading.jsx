@@ -7,10 +7,13 @@ export default function heading({ text, isViewAll = false }) {
             <Text style={styles.heading}>
                 {text}
             </Text>
-            <Text>
-                View All
-            </Text>
-        </View>
+
+            {isViewAll &&
+                < Text >
+                    View All
+                </Text>
+            }
+        </View >
 
     )
 
@@ -20,9 +23,14 @@ export default function heading({ text, isViewAll = false }) {
 const styles = StyleSheet.create({
     heading: {
         fontSize: 20,
-        marginBottom: 10
+        marginBottom: 10,
+        fontWeight: 'bold'
+
     },
-    container:{
-        
+    container: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between'
     }
 })

@@ -1,5 +1,8 @@
 export default {
     BLACK: '#000000',
-    PRIMARY: 'lightblue',
+    PRIMARY: '#777cd1',
     WHITE: '#ffffff',
+    LIGHT_GREY: '#EDEDED',
+    PRIMARY_LIGHT: 'lightblue',
+    GRAY: 'grey'
 }

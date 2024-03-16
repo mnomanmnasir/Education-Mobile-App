@@ -1,4 +1,4 @@
-import { View, Text, Image, StyleSheet, TextInput } from 'react-native'
+import { View, Text, ScrollView, Image, StyleSheet, TextInput } from 'react-native'
 import React from 'react'
 import { useUser } from '@clerk/clerk-expo';
 import Color from '../.././Utiles/Color'
@@ -10,28 +10,31 @@ export default function Header() {
     const { user, isLoading } = useUser();
 
     return user && (
-        <View style={styles.container}>
+        <ScrollView stickyHeaderIndices={[0]}>
 
-            <View style={styles.profileMainContainer}>
-                <View style={styles.profileContainer}>
-                    <Image source={{ uri: user?.imageUrl }} style={styles.userImage} />
-                    <View>
-                        <Text style={{ color: Color.WHITE }}>
-                            Welcome,
-                        </Text>
-                        <Text style={{ color: Color.WHITE, fontSize: 20 }}>
-                            {user?.fullName}
-                        </Text>
+            <View style={styles.container} >
+
+                <View style={styles.profileMainContainer}>
+                    <View style={styles.profileContainer}>
+                        <Image source={{ uri: user?.imageUrl }} style={styles.userImage} />
+                        <View>
+                            <Text style={{ color: Color.WHITE }}>
+                                Welcome,
+                            </Text>
+                            <Text style={{ color: Color.WHITE, fontSize: 20 }}>
+                                {user?.fullName}
+                            </Text>
+                        </View>
                     </View>
+                    <FontAwesome name="bookmark-o" size={27} color="white" />
                 </View>
-                <FontAwesome name="bookmark-o" size={27} color="white" />
+                <View style={styles.searchBarInput}>
+                    <TextInput placeholder='Search' style={styles.textInput}
+                    />
+                    <FontAwesome name="search" style={styles.searchBtn} size={24} color={Color.PRIM} />
+                </View>
             </View>
-            <View style={styles.searchBarInput}>
-                <TextInput placeholder='Search' style={styles.textInput}
-                />
-                <FontAwesome name="search" style={styles.searchBtn} size={24} color={Color.PRIM} />
-            </View>
-        </View>
+        </ScrollView>
     )
 }
 
@@ -42,7 +45,8 @@ const styles = StyleSheet.create({
         paddingTop: 40,
         backgroundColor: Color.PRIMARY,
         borderBottomLeftRadius: 25,
-        borderBottomRightRadius: 25
+        borderBottomRightRadius: 25,
+  
     },
 
     profileMainContainer: {

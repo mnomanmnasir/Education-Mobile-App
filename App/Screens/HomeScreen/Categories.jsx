@@ -1,7 +1,8 @@
-import { View, Text, StyleSheet, FlatList } from 'react-native'
+import { View, Text, StyleSheet, FlatList, Image } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import GlobalApi from '../../Utiles/GlobalApi'
 import Heading from '../../Heading/Heading'
+import Color from '../../Utiles/Color'
 
 export default function Categories() {
 
@@ -13,21 +14,26 @@ export default function Categories() {
 
     const getCategory = () => {
         GlobalApi.getCategory().then(res => {
-            console.log(res?.categories)
+            // console.log(res?.categories)
+            setCategories(res?.categories) // Update categories state with fetched data
         })
     }
 
     return (
-        <View style={{marginTop: 10}}>
-            <Heading text={'Categories'}/>
+        <View style={{ marginTop: 10 }}>
+
+            <Heading text={'Top Categories'} isViewAll={true} />
             <FlatList
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}
+                numColumns={4}
                 data={categories}
                 renderItem={({ index, item }) => (
-                    <View style={{ marginRight: 20 }}>
-                        <Image source={{ uri: item?.icon?.url }} style={styles.sliderImage} />
-
+                    <View style={styles.container}>
+                        <View style={styles.icons}>
+                            <Image source={{ uri: item?.icon?.url }} style={{ width: 30, height: 30 }} />
+                        </View>
+                        <Text>
+                            {item?.name}
+                        </Text>
                     </View>
                 )}
             />
@@ -36,16 +42,14 @@ export default function Categories() {
 }
 
 
-// const styles = StyleSheet.create({
-//     heading: {
-//         fontSize: 20,
-//         marginBottom: 10,
-//         marginTop: 10
-//     },
-//     sliderImage: {
-//         width: 270,
-//         height: 150,
-//         borderRadius: 20,
-//         objectFit: 'contain'
-//     }
-// })
+const styles = StyleSheet.create({
+    icons: {
+        backgroundColor: Color.LIGHT_GREY,
+        borderRadius: 99,
+        padding: 17
+    },
+    container: {
+        flex: 1,
+        alignItems: 'center'
+    }
+})

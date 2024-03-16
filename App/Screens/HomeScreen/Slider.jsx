@@ -43,9 +43,9 @@ const styles = StyleSheet.create({
         marginBottom: 10
     },
     sliderImage: {
-        width: 270,
+        width: 370,
         height: 150,
         borderRadius: 20,
-        objectFit: 'contain'
+        objectFit: 'cover'
     }
 })

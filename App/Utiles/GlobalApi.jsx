@@ -5,7 +5,7 @@ const MASTER_URL = "https://api-us-east-1-shared-usea1-02.hygraph.com/v2/cltsyv4
 
 const getSlider = async () => {
 
-    const query = gql`
+  const query = gql`
     query GetSlider {
         sliders {
           id
@@ -17,12 +17,12 @@ const getSlider = async () => {
       }
       
     `
-    const result = await request(MASTER_URL, query)
-    return result
+  const result = await request(MASTER_URL, query)
+  return result
 }
 
 const getCategory = async () => {
-    const query = gql`
+  const query = gql`
 
 
  query GetCategory {
@@ -37,11 +37,41 @@ const getCategory = async () => {
   
  `
 
-    const result = await request(MASTER_URL, query)
-    return result
+  const result = await request(MASTER_URL, query)
+  return result
 }
 
+
+const getBusinessList = async () => {
+  const query = gql`
+query getBusinessList {
+  businessLists {
+    id
+    name
+    email
+    contactPerson
+    categorie {
+      name
+    }
+    address
+    about
+    images {
+      url
+    }
+  }
+}
+
+`
+
+  const result = await request(MASTER_URL, query)
+  return result
+
+
+}
+
+
 export default {
-    getSlider,
-    getCategory
+  getSlider,
+  getCategory,
+  getBusinessList
 }
