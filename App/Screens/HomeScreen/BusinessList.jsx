@@ -22,7 +22,7 @@ export default function BusinessList() {
     return (
         <View style={{ marginTop: 10 }}>
             <Heading text={'My Courses'} isViewAll={true} />
-            <FlatList
+        <FlatList
                 data={businessList}
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
@@ -31,8 +31,7 @@ export default function BusinessList() {
                         <BusinessListImages business={item} />
                     </View>
                 )}
-            />
-
+            /> 
         </View>
     )
 }
