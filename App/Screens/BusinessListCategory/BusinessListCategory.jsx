@@ -32,16 +32,16 @@ export default function BusinessListCategory() {
                 </Text>
             </TouchableOpacity>
 
-           {businessList.length >0 ? <FlatList
+            {businessList.length > 0 ? <FlatList
                 data={businessList}
-                style={{marginTop: 10}}
-                renderItem={({  item, index }) => (
+                style={{ marginTop: 10 }}
+                renderItem={({ item, index }) => (
                     <BusinessListItems business={item} />
                 )}
-            />: <Text style={{fontSize: 20, textAlign: 'center', marginTop: '20%', color: Color.GRAY}}>
+            /> : <Text style={{ fontSize: 20, textAlign: 'center', marginTop: '20%', color: Color.GRAY }}>
                 No Business Found
             </Text>
-                }
+            }
         </View>
     )
 }
