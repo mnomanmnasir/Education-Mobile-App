@@ -5,13 +5,13 @@ import { FontAwesome6 } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native'
 
 
-export default function BusinessListItems({ business }) {
+export default function BusinessListItems({ business, booking }) {
 
     const navigation = useNavigation();
 
     return (
         <TouchableOpacity style={styles.container} onPress={() => navigation.push('business-detail', {
-            business: business 
+            business: business
         })}>
             <Image source={{ uri: business?.images[0]?.url }}
                 style={styles.image}
@@ -30,6 +30,10 @@ export default function BusinessListItems({ business }) {
                     <FontAwesome6 name="location-dot" size={20} color={Color.PRIMARY} />
                     {business?.address}
                 </Text>
+
+                {
+                    booking?.id ? <Text>Show Courses</Text> : null
+                }
             </View>
         </TouchableOpacity>
     )

@@ -13,7 +13,7 @@ export default function Slider() {
 
     const getSlider = () => {
         GlobalApi.getSlider().then(res => {
-            console.log('response', res.sliders)
+            // console.log('response', res.sliders)
             setSliders(res?.sliders)
         })
     }
@@ -28,7 +28,6 @@ export default function Slider() {
                 renderItem={({ index, item }) => (
                     <View style={{ marginRight: 20 }}>
                         <Image source={{ uri: item?.image?.url }} style={styles.sliderImage} />
-
                     </View>
                 )}
             />

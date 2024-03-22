@@ -8,13 +8,14 @@ import BusinessListImages from './BusinessListImages'
 export default function BusinessList() {
 
     const [businessList, setBusinessList] = useState([])
+
     useEffect(() => {
         getBusinessList()
     })
 
     const getBusinessList = () => {
         GlobalApi.getBusinessList().then(res => {
-            console.log(res);
+            // console.log(res);
             setBusinessList(res.businessLists)
         })
     }
