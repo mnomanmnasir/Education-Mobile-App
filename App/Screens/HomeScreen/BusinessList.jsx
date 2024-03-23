@@ -21,8 +21,8 @@ export default function BusinessList() {
     }
 
     return (
-        <View style={{ marginTop: 10 }}>
-            <Heading text={'My Courses'} isViewAll={true} />
+        <View style={{ marginTop: 20 }}>
+            <Heading text={'Our Courses'} isViewAll={true} />
         <FlatList
                 data={businessList}
                 horizontal={true}

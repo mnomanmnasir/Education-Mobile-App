@@ -1,8 +1,14 @@
-import { View, Text, Image, StyleSheet } from 'react-native'
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 import Color from '../../Utiles/Color'
+import { useNavigation } from '@react-navigation/native'
+
 
 export default function BusinessListImages({ business }) {
+
+
+    const navigation = useNavigation();
+
     return (
         <View style={styles.container}>
             <Image source={{ uri: business?.images[0]?.url }}

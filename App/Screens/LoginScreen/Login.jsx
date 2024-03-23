@@ -5,13 +5,13 @@ import Color from '../../Utiles/Color';
 import * as WebBrowser from "expo-web-browser";
 import { useWarmUpBrowser } from '../../hooks/useWarmUpBrowser';
 import { useOAuth } from "@clerk/clerk-expo";
-
+import { useIsFocused } from '@react-navigation/native';
 
 
 WebBrowser.maybeCompleteAuthSession();
 export default function login() {
     useWarmUpBrowser();
-
+    const isFocused = useIsFocused();
 
     const { startOAuthFlow } = useOAuth({ strategy: "oauth_google" });
 
@@ -26,9 +26,21 @@ export default function login() {
                 // Use signIn or signUp for next steps such as MFA
             }
         } catch (err) {
-            console.error("OAuth error", err);
+            if (error.message === 'User cancelled the prompt') {
+                // Handle user cancellation
+                Alert.alert('Login Cancelled', 'You have cancelled the login process.');
+            } else {
+                // Handle other errors
+                console.error("OAuth error", error);
+                Alert.alert('Login Error', 'An error occurred during login. Please try again later.');
+            }
         }
     }, []);
+
+    tabBarVisible = 'false' // Hide content when screen is not focused
+    if (!isFocused) {
+        return null;
+    }
 
     return (
         <View style={{ alignItems: 'center' }}>
@@ -52,8 +64,7 @@ export default function login() {
                 <Text style={{ fontSize: 17, color: Color.WHITE, textAlign: 'center', marginTop: 20 }}>
                     Best App to find services near you which deliver you a professional Service
                 </Text>
-                <TouchableOpacity style={styles.button} onPress={onPress}>
-
+                <TouchableOpacity style={styles.button} onPress={onPress} >
                     <Text style={{ textAlign: 'center', color: Color.PRIMARY, fontWeight: 'bold' }}>Let's Get Started</Text>
                 </TouchableOpacity>
             </View>

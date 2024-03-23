@@ -23,9 +23,9 @@ export default function Categories() {
     }
 
     return (
-        <View style={{ marginTop: 10 }}>
+        <View style={{ marginTop: 20 }}>
 
-            <Heading text={'Top Categories'} isViewAll={true} />
+            <Heading text={'Course Materials'} isViewAll={true} />
             <FlatList
                 numColumns={4}
                 data={categories}

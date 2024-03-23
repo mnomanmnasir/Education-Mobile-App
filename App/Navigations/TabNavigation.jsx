@@ -15,15 +15,17 @@ export default function TabNavigation() {
     return (
         <Tab.Navigator screenOptions={{
             headerShown: false,
+            tabBarVisible: false,
             tabBarActiveTintColor: Color.PRIMARY
         }}>
             <Tab.Screen name="home" component={HomeNavigation} options={{
+                
                 tabBarIcon: ({ color, size }) => (
                     <AntDesign name="home" size={size} color={color} />
                 ),
             }}
             />
-            <Tab.Screen name="booking" component={BookingScreen}
+            <Tab.Screen name="Courses" component={BookingScreen}
                 options={{
                     tabBarIcon: ({ color, size }) => (
                         <MaterialCommunityIcons name="calendar" size={size} color={color} />

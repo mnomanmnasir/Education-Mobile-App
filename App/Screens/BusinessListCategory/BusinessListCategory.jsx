@@ -13,6 +13,7 @@ export default function BusinessListCategory() {
     const param = useRoute().params;
     const navigation = useNavigation()
     const [businessList, setBusinessList] = useState([])
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         param && getBusinessListCategory()
@@ -26,16 +27,18 @@ export default function BusinessListCategory() {
 
     return (
         <View style={{ padding: 20, paddingTop: 30 }}>
-         <PageHeading title={param.categorie}/>
+            <PageHeading title={param.categorie} />
 
             {businessList.length > 0 ? <FlatList
                 data={businessList}
+                onRefresh={() => getBusinessListCategory()}
+                refreshing={loading}
                 style={{ marginTop: 10 }}
                 renderItem={({ item, index }) => (
                     <BusinessListItems business={item} />
                 )}
             /> : <Text style={{ fontSize: 20, textAlign: 'center', marginTop: '20%', color: Color.GRAY }}>
-                No Business Found
+                No Courses Found
             </Text>
             }
         </View>

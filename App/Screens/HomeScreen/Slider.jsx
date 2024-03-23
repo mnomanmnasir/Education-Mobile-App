@@ -20,7 +20,7 @@ export default function Slider() {
 
     return (
         <View>
-            <Heading text={'Offer For You'} />
+            <Heading text={'Education Programs'} />
             <FlatList
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         marginBottom: 10
     },
     sliderImage: {
-        width: 370,
+        width: 355,
         height: 150,
         borderRadius: 20,
         objectFit: 'cover'

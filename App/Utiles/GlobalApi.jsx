@@ -102,7 +102,7 @@ const createBooking = async (data) => {
   const mutationQuery = gql`
   mutation createBooking {
     createBooking(
-      data: {bookingStatus: Booked, 
+      data: {bookingStatus: Enrolled, 
         businessList:{
           connect: {id: "`+ data.businessId + `"}}, 
       date: "`+ data.date + `", 

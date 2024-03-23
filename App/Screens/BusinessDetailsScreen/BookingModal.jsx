@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, FlatList, StyleSheet, TextInput, KeyboardAvoidingView, ScrollView, ToastAndroid } from 'react-native'
+import { View, Text, TouchableOpacity, FlatList, StyleSheet, TextInput, KeyboardAvoidingView, ScrollView, ToastAndroid, Platform , Alert } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { Ionicons } from '@expo/vector-icons';
 import CalendarPicker from "react-native-calendar-picker";
@@ -47,7 +47,11 @@ export default function BookingModal({ businessId, hideModal }) {
     const createNewBooking = () => {
 
         if (!selectedTime || !selectedDate) {
-            ToastAndroid.show('Please select Data and Time', ToastAndroid.LONG)
+            if (Platform.OS === 'android') {
+                ToastAndroid.show('Please select Date and Time', ToastAndroid.LONG);
+            } else {
+                Alert.alert('Please select Date and Time');
+            }
             return;
         }
         const data = {
@@ -59,15 +63,18 @@ export default function BookingModal({ businessId, hideModal }) {
         }
         GlobalApi.createBooking(data).then(res => {
             console.log(res)
-            ToastAndroid.show('Booking Created Successfully!',
-                ToastAndroid.LONG)
+            if (Platform.OS === 'android') {
+                ToastAndroid.show('Course Added Successfully!', ToastAndroid.LONG);
+            } else {
+                Alert.alert('Course Added Successfully!');
+            }
             hideModal();
         })
     }
     return (
         <ScrollView>
 
-            <KeyboardAvoidingView style={{ padding: 20, marginTop: 30 }}>
+            <KeyboardAvoidingView style={{ padding: 20, marginTop: 30 }} behavior={Platform.OS === 'ios' ? 'padding' : null}>
                 <TouchableOpacity style={{ display: 'flex', flexDirection: 'row', gap: 10, alignItems: 'center', marginBottom: 20 }} onPress={() => hideModal()}>
                     <Ionicons name="arrow-back-outline" size={30} color="black" />
                     <Text style={{ fontSize: 25 }}>
@@ -124,7 +131,7 @@ export default function BookingModal({ businessId, hideModal }) {
                 {/* confirmation button */}
                 <TouchableOpacity style={{ marginTop: 20 }} onPress={() => createNewBooking()}>
                     <Text style={styles.confirmBtn}>
-                        Confirm & Book
+                        Confirm Course
                     </Text>
                 </TouchableOpacity>
             </KeyboardAvoidingView>

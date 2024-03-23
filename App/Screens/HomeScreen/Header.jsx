@@ -31,7 +31,7 @@ export default function Header() {
                 <View style={styles.searchBarInput}>
                     <TextInput placeholder='Search' style={styles.textInput}
                     />
-                    <FontAwesome name="search" style={styles.searchBtn} size={24} color={Color.PRIM} />
+                    <FontAwesome name="search" style={styles.searchBtn} size={24} color={Color.PRIMARY} />
                 </View>
             </View>
         </ScrollView>
@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
         backgroundColor: Color.PRIMARY,
         borderBottomLeftRadius: 25,
         borderBottomRightRadius: 25,
+        marginTop: 5
   
     },
 

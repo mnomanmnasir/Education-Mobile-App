@@ -49,7 +49,7 @@ export default function BusinessDetailsScreen() {
           {/*About Section  */}
           <View>
             <Heading text={'About Me'} />
-            <Text style={{ color: Color.GRAY, lineHeight: 28, fontSize: 16 }} numberOfLines={isReadMore ? 2 : 1}>
+            <Text style={{ color: Color.GRAY, lineHeight: 28, fontSize: 16 }} numberOfLines={isReadMore ? 8 : 2}>
               {business.about}
             </Text>
             <TouchableOpacity onPress={() => setReadMore(!isReadMore)}>
@@ -58,10 +58,6 @@ export default function BusinessDetailsScreen() {
               </Text>
             </TouchableOpacity>
           </View>
-          {/* Horizontal Line */}
-          <View style={{ borderWidth: 0.4, color: Color.GRAY, marginTop: 20, marginBottom: 20 }}>
-          </View>
-          <CoursesPhotos business={business} />
         </View>
       </ScrollView>
       <View style={{ display: 'flex', flexDirection: 'row', margin: 8, gap: 5 }}>
@@ -78,7 +74,7 @@ export default function BusinessDetailsScreen() {
             textAlign: 'center', color: Color.WHITE,
             fontSize: 18
           }}>
-            Booking
+            Add Course
           </Text>
         </TouchableOpacity>
       </View>

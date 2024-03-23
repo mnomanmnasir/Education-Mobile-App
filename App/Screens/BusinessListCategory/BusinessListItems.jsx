@@ -3,6 +3,7 @@ import React from 'react'
 import Color from '../../Utiles/Color'
 import { FontAwesome6 } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native'
+import { AntDesign } from '@expo/vector-icons';
 
 
 export default function BusinessListItems({ business, booking }) {
@@ -26,14 +27,27 @@ export default function BusinessListItems({ business, booking }) {
                 <Text style={{ fontSize: 20, fontWeight: 'bold' }}>
                     {business?.name}
                 </Text>
-                <Text style={{ color: Color.GRAY, fontSize: 16 }}>
-                    <FontAwesome6 name="location-dot" size={20} color={Color.PRIMARY} />
-                    {business?.address}
-                </Text>
+                {booking && business.address !== booking.address || (
+                    <Text style={{ color: Color.GRAY, fontSize: 16 }}>
+                        <FontAwesome6 name="location-dot" size={20} color={Color.PRIMARY} />
+                        {business?.address}
+                    </Text>
+                )}
 
+                {booking && booking.bookingStatus && (
+                    <Text style={[
+                        {
+                            padding: 5, borderRadius: 5, fontSize: 14, width: 90
+                        },
+                        booking.bookingStatus === 'Completed' ? { backgroundColor: Color.LIGHT_GREEN, color: Color.GREEN }
+                            : booking.bookingStatus === 'Withdraw' ? { backgroundColor: Color.LIGHT_RED, color: Color.RED }
+                                : { color: Color.PRIMARY, backgroundColor: Color.PRIMARY_LIGHT }
+                    ]}>
+                        {booking.bookingStatus}
+                    </Text>
+                )}
                 {
-                    booking?.id ? <Text>Show Courses</Text> : null
-                }
+                    booking?.id && <Text style={{color: Color.GRAY, fontSize: 16}}><AntDesign name="calendar" size={20} color={Color.PRIMARY}/> {booking.date} at {booking.time}</Text>}
             </View>
         </TouchableOpacity>
     )
